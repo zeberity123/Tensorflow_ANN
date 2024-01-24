@@ -15,6 +15,9 @@ def label_encoder(cities):
     # print(enc.classes_)
     # print(enc.classes_[result])
 
+    eye = np.identity(len(enc.classes_), dtype=np.int32)
+    print(eye[result])
+
     return result
 
 
@@ -28,6 +31,7 @@ def label_binarizer(cities):
     print([np.argmax(i) for i in result])
     print(np.argmax(result))
     print(np.argmax(result, axis=1))
+    
     
     # print(result)
 

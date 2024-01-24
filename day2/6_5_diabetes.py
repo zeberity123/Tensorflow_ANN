@@ -37,4 +37,5 @@ model.fit(x_train, y_train, epochs=50, verbose=2,
           validation_data=(x_test, y_test))
 
 p = model.predict(x_test, verbose=0)
+print(p)
 print('acc: ', np.mean((p > 0.5) == y_test))
