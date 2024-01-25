@@ -53,7 +53,7 @@ classifiers = [
     DecisionTreeClassifier(),
     RandomForestClassifier(),
     AdaBoostClassifier(),
-    GradientBoostingClassifier(),
+    # GradientBoostingClassifier(),
     GaussianNB(),
     LinearDiscriminantAnalysis(),
     QuadraticDiscriminantAnalysis()]
@@ -79,34 +79,34 @@ for clf in classifiers:
     print("Log Loss: {}".format(ll))
     
     log_entry = pd.DataFrame([[name, acc*100, ll]], columns=log_cols)
-    log = log.append(log_entry)
+    # log = log.append(log_entry)
     
 print("="*30)
 
-sns.set_color_codes("muted")
-sns.barplot(x='Accuracy', y='Classifier', data=log, color="b")
+# sns.set_color_codes("muted")
+# sns.barplot(x='Accuracy', y='Classifier', data=log, color="b")
 
-plt.xlabel('Accuracy %')
-plt.title('Classifier Accuracy')
-plt.show()
+# plt.xlabel('Accuracy %')
+# plt.title('Classifier Accuracy')
+# plt.show()
 
-sns.set_color_codes("muted")
-sns.barplot(x='Log Loss', y='Classifier', data=log, color="g")
+# sns.set_color_codes("muted")
+# sns.barplot(x='Log Loss', y='Classifier', data=log, color="g")
 
-plt.xlabel('Log Loss')
-plt.title('Classifier Log Loss')
-plt.show()
+# plt.xlabel('Log Loss')
+# plt.title('Classifier Log Loss')
+# plt.show()
 
 # Predict Test Set
-# favorite_clf = LinearDiscriminantAnalysis()
-# favorite_clf.fit(X_train, y_train)
-# test_predictions = favorite_clf.predict_proba(test)
+favorite_clf = LinearDiscriminantAnalysis()
+favorite_clf.fit(X_train, y_train)
+test_predictions = favorite_clf.predict_proba(test)
 
-# # Format DataFrame
-# submission = pd.DataFrame(test_predictions, columns=classes)
-# submission.insert(0, 'id', test_ids)
-# submission.reset_index()
+# Format DataFrame
+submission = pd.DataFrame(test_predictions, columns=classes)
+submission.insert(0, 'id', test_ids)
+submission.reset_index()
 
-# # Export Submission
-# #submission.to_csv('submission.csv', index = False)
-# submission.tail()
+# Export Submission
+submission.to_csv('leaf/submission.csv', index = False)
+submission.tail()
